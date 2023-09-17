@@ -54,8 +54,22 @@ void test_float() {
     ctest_assert_equal_float(expected, actual, 0.05f);
 }
 
-void test_true() {
-    ctest_assert(1);
+#include <stdio.h>
+#include <string.h>
+
+void test_failing() {
+    int a[] = { 1, 2, 3 };
+    int b[] = { 1, 3, 3 };
+
+    ctest_assert_equal_bytes((const char *)b, (const char *)a, 12);
+}
+
+void test_failing2() {
+    ctest_assert(0);
+}
+
+void test_failing3() {
+    ctest_assert_equal_int(5, 6);
 }
 
 int main() {
@@ -65,6 +79,9 @@ int main() {
     CTEST_ADD_TEST(test_greet);
     CTEST_ADD_TEST(test_arr_sum);
     CTEST_ADD_TEST(test_float);
+    CTEST_ADD_TEST(test_failing);
+    CTEST_ADD_TEST(test_failing2);
+    CTEST_ADD_TEST(test_failing3);
 
     ctest_run();
 }

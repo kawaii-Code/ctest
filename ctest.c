@@ -50,8 +50,8 @@ void ctest_fail() {
 }
 
 void ctest_assert(int value) {
-    if (value) {
-        printf("Fail");
+    if (!value) {
+        printf("Fail\n");
         ctest_fail();
     }
 }
@@ -73,19 +73,17 @@ void ctest_assert_equal_float(float expected, float actual, float delta) {
 }
 
 // TODO: Better output
-void ctest_assert_equal_bytes(void *expected, void *actual, size_t size) {
-    int result = strncmp(expected, actual, size);
-    if (result != 0) {
-        char expectedBuf[size + 1];
-        char actualBuf[size + 1];
+void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t byte_count) {
+    int not_equal = -1;
+    for (size_t i = 0; i < byte_count; i++) {
+        if (expected[i] != actual[i]) {
+            not_equal = i;
+            break;
+        }
+    }
 
-        expectedBuf[size] = '\0';
-        actualBuf[size] = '\0';
-
-        snprintf(expectedBuf, size, "%s", (char *)expected);
-        snprintf(actualBuf, size, "%s", (char *)actual);
-        printf("Expected '%s', was '%s'. ", expectedBuf, actualBuf);
-
+    if (not_equal >= 0) {
+        printf("Expected '%d', was '%d' at byte %d\n", expected[not_equal], actual[not_equal], not_equal);
         ctest_fail();
     }
 }

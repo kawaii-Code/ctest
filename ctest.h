@@ -15,6 +15,6 @@ void ctest_run();
 void ctest_assert(int value);
 void ctest_assert_equal_int(int expected, int actual);
 void ctest_assert_equal_float(float expected, float actual, float delta);
-void ctest_assert_equal_bytes(void *a, void *b, size_t size);
+void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t byte_count);
 
 #endif // CTEST_H
