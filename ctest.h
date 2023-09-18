@@ -3,8 +3,12 @@
 
 #include <stddef.h>
 
-#define CTEST_ASSERT_EQUAL(a, b) ctest_assert_equal(&a, &b, sizeof a)
 #define CTEST_ADD_TEST(test) do { ctest_add_test(test, #test); } while(0)
+#define CTEST_ASSERT_EQUAL(expected, actual, type, count) \
+        ctest_assert_equal_bytes(                         \
+                (const char *)(expected),                 \
+                (const char *)(actual),                   \
+                (count) * sizeof(type))
 
 typedef void (*TestFunction)();
 

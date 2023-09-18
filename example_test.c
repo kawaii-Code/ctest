@@ -33,7 +33,7 @@ void test_mul() {
 
 void test_greet() {
     const char *greeting = greet("Nia");
-    ctest_assert_equal_bytes("Hello, Nia", (void *)greeting, 10);
+    CTEST_ASSERT_EQUAL("Hello, Nia", greeting, const char, 10);
 }
 
 void test_arr_sum() {
@@ -44,7 +44,7 @@ void test_arr_sum() {
 
     int expected[] = {5, 8, 10};
 
-    ctest_assert_equal_bytes(expected, a, 3);
+    CTEST_ASSERT_EQUAL(expected, a, int, 3);
 }
 
 void test_float() {
@@ -54,14 +54,11 @@ void test_float() {
     ctest_assert_equal_float(expected, actual, 0.05f);
 }
 
-#include <stdio.h>
-#include <string.h>
-
 void test_failing() {
-    int a[] = { 1, 2, 3 };
-    int b[] = { 1, 3, 3 };
+    int actual[] = { 1, 2, 3 };
+    int expected[] = { 1, 3, 3 };
 
-    ctest_assert_equal_bytes((const char *)b, (const char *)a, 12);
+    CTEST_ASSERT_EQUAL(expected, actual, int, 3);
 }
 
 void test_failing2() {
