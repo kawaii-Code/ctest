@@ -3,29 +3,19 @@
 
 #include "example.h"
 
-int sum(int a, int b) {
-    return a + b;
-}
-
-int mul(int a, int b) {
-    return a * b;
-}
-
-void arr_add(int *dest, int *other, size_t n) {
+void array_add(int *dest, int *other, size_t n) {
     for (int i = 0; i < n; i++) {
         dest[i] = other[i] + dest[i];
     }
 }
 
-const char *greet(const char *name) {
-#define HELLO "Hello, "
+const char *string_concat(const char *a, const char *b) {
+    long length = strlen(a) + strlen(b);
+    char *result = malloc((length + 1) * sizeof *a);
+    *result = '\0';
 
-    long len = strlen(HELLO) + strlen(name);
-    char *greeting = malloc((len + 1) * sizeof *name);
-    *greeting = '\0';
+    strcat(result, a);
+    strcat(result, b);
 
-    strcat(greeting, HELLO);
-    strcat(greeting, name);
-
-    return greeting;
+    return result;
 }

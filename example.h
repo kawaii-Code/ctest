@@ -1,7 +1,4 @@
 #include <stddef.h>
 
-int sum(int a, int b);
-int mul(int a, int b);
-
-void arr_add(int *dest, int *other, size_t n);
-const char *greet(const char *name);
+void array_add(int *dest, int *other, size_t n);
+const char *string_concat(const char *a, const char *b);
