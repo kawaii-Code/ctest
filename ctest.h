@@ -12,13 +12,12 @@
 
 typedef void (*TestFunction)();
 
+void ctest_run_tests();
 void ctest_add_test(TestFunction test, const char *testName);
-
-void ctest_run();
 
 void ctest_assert(int value);
 void ctest_assert_equal_int(int expected, int actual);
 void ctest_assert_equal_float(float expected, float actual, float delta);
-void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t byte_count);
+void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t byteCount);
 
 #endif // CTEST_H

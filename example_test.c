@@ -54,18 +54,18 @@ void test_float() {
     ctest_assert_equal_float(expected, actual, 0.05f);
 }
 
-void test_failing() {
+void test_should_fail_1() {
     int actual[] = { 1, 2, 3 };
     int expected[] = { 1, 3, 3 };
 
     CTEST_ASSERT_EQUAL(expected, actual, int, 3);
 }
 
-void test_failing2() {
+void test_should_fail_2() {
     ctest_assert(0);
 }
 
-void test_failing3() {
+void test_should_fail_3() {
     ctest_assert_equal_int(5, 6);
 }
 
@@ -76,9 +76,9 @@ int main() {
     CTEST_ADD_TEST(test_greet);
     CTEST_ADD_TEST(test_arr_sum);
     CTEST_ADD_TEST(test_float);
-    CTEST_ADD_TEST(test_failing);
-    CTEST_ADD_TEST(test_failing2);
-    CTEST_ADD_TEST(test_failing3);
+    CTEST_ADD_TEST(test_should_fail_1);
+    CTEST_ADD_TEST(test_should_fail_2);
+    CTEST_ADD_TEST(test_should_fail_3);
 
-    ctest_run();
+    ctest_run_tests();
 }

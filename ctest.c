@@ -9,7 +9,7 @@ typedef struct {
     const char  *name;
 } Test;
 
-#define TEST_CAPACITY 1000
+#define TEST_CAPACITY 4096
 static Test tests[TEST_CAPACITY];
 static int  testCount = 0;
 static int  failedTests = 0;
@@ -73,9 +73,9 @@ void ctest_assert_equal_float(float expected, float actual, float delta) {
 }
 
 // TODO: Better output
-void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t byte_count) {
+void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t byteCount) {
     int not_equal = -1;
-    for (size_t i = 0; i < byte_count; i++) {
+    for (size_t i = 0; i < byteCount; i++) {
         if (expected[i] != actual[i]) {
             not_equal = i;
             break;
@@ -83,7 +83,8 @@ void ctest_assert_equal_bytes(const char *expected, const char *actual, size_t b
     }
 
     if (not_equal >= 0) {
-        printf("Expected '%d', was '%d' at byte %d\n", expected[not_equal], actual[not_equal], not_equal);
+        printf("Expected '%d', was '%d' at byte %d\n",
+                expected[not_equal], actual[not_equal], not_equal);
         ctest_fail();
     }
 }
